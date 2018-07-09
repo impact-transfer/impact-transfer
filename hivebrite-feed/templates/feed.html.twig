@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ feed.communityName }} Feed</title>
+        <head>
+        	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ (params.font is defined) ? params.font : 'Roboto' }}">
+        {% block stylesheets %}
+            <link href="/css/feed.css" rel="stylesheet" />
+        {% endblock %}
+        {% if params.customCss is defined %}
+        	<link href="params.customCss" rel="stylesheet" />
+        {% endif %}
+        <style>
+        	:root {
+			    --bg-color: #{{ (params.backgroundColor is defined) ? params.backgroundColor : 'ffffff' }};
+
+			    --primary-font-size: {{ (params.primaryFontSize is defined) ? params.primaryFontSize : '24px' }};
+			    --secondary-font-size: {{ (params.secondaryFontSize is defined) ? params.secondaryFontSize : '18px' }};
+			    --tertiary-font-size: {{ (params.tertiaryFontSize is defined) ? params.tertiaryFontSize : '16px' }};
+
+			    --primary-font-color: #{{ (params.primaryFontColor is defined) ? params.primaryFontColor : '000000' }};
+			    --secondary-font-color: #{{ (params.secondaryFontColor is defined) ? params.secondaryFontColor : '111111' }};
+			    --tertiary-font-color: #{{ (params.tertiaryFontColor is defined) ? params.tertiaryFontColor : '333333' }};
+
+			    --primary-font-weight: {{ (params.primaryFontWeight is defined) ? params.primaryFontWeight : '500' }};
+			    --secondary-font-weight: {{ (params.secondaryFontWeight is defined) ? params.secondaryFontWeight : '500' }};
+			    --tertiary-font-weight: {{ (params.tertiaryFontWeight is defined) ? params.tertiaryFontWeight : '500' }};
+			    
+			    --primary-font-decoration: {{ (params.tertiaryFontDecoration is defined) ? params.tertiaryFontDecoration : 'none' }};
+			    --secondary-font-decoration: {{ (params.tertiaryFontDecoration is defined) ? params.tertiaryFontDecoration : 'none' }};
+			    --tertiary-font-decoration: {{ (params.tertiaryFontDecoration is defined) ? params.tertiaryFontDecoration : 'none' }};
+
+			    --font: {{ (params.font is defined) ? params.font : 'Roboto' }};
+			}
+        </style>
+    </head>
+    <body>
+		<div class="feedContainer">
+			{% if feed.communityLogo is not empty %}
+			<a href="{{ feed.communityUrl }}">
+				<img src="{{ feed.communityLogo }}">
+			</a>
+			{% endif %}
+
+			<h1><a href="{{ feed.communityUrl }}">{{ feed.communityName }}</a></h1>
+
+			{% if feed.communityDescription is not empty %}
+			<p><strong>{{ feed.communityDescription }}</strong></p>
+			{% endif %}
+
+			<ul class="feedItems">
+
+				{% for item in feed.feedItems %}
+					{{ include('items/' ~ item.type ~ '.html.twig', { 'item': item }) }}
+				{% endfor %}
+
+			</ul>
+		</div>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+body{
+	background-color: var(--bg-color);
+	font-size: var(--tertiary-font-size);
+	color: var(--tertiary-font-color);
+	font-family: var(--font);
+}
+
+h1, h1>a {
+	font-size: var(--primary-font-size);
+	color: var(--primary-font-color);
+}
+
+h3, h3>a {
+	font-size: var(--secondary-font-size);
+	color: var(--secondary-font-color);
+}
+
+p {
+	margin: 0;
+}
+
+ul.feedItems {
+	padding: 0px;
+}
+
+.event-description>p {
+	margin: 0px;
+}
+
+h3 {
+	margin: 15px 0px;
+}
+
+h1>a {
+	text-decoration: none;
+}
+
+h1 {
+	margin: 23px 0;
+}
+
+.feedItems {
+	margin-top: 15px;
+}
+
+.eventContainer {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #999999;
+}
+
+.event-date,
+.event-meta {
+	margin-top: .5rem;
+}
+
+.event-left {
+	width: 25%;
+	float: left;
+	margin-right: 4%;
+}
+
+.event-left img {
+	width: 100%;
+}
+
+
+
+.clear {
+	clear: both;
+}
+
+.feedContainer {
+	max-width: 400px;
+	margin: 0 auto;
+}
+
+.label {
+	font-weight: 700;
+}

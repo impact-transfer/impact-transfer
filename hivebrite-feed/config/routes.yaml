@@ -1,0 +1,9 @@
+index:
+   path: /
+   controller: App\Controller\FeedController::index
+import:
+   path: /import
+   controller: App\Controller\ImportController::index
+importCommunity:
+   path: /import/{community}
+   controller: App\Controller\ImportController::index

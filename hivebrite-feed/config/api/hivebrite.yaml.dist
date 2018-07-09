@@ -1,0 +1,7 @@
+communities:
+    - name: Your Community
+      slug: your-community
+      url: https://<your-community>.preprod.hivebrite.com
+
+      uid: <your-long-uid-hash>
+      secret: <your-long-secret-hash>

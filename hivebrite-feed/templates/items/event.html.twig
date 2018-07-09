@@ -1,0 +1,75 @@
+<div class="eventContainer">
+<h3>
+	{% if item.url %}
+		<a href="{{item.url}}">{{ item.title }}</a>
+	{% else %}
+		{{ item.title }}
+	{% endif %}
+</h3>
+
+<!-- REPLACE item.meta.end and feed.communityLogo with actual image property. location was choosen bacuse not all events have it set. Needs to be done when the Image is actualy included in the feed. -->
+{% if item.meta.location is defined and item.meta.location is not empty %}
+<div class="event-left">
+	{% if item.url %}
+		<a href="{{ item.url }}">
+			<img src="{{ feed.communityLogo }}">
+		</a>
+	{% else %}
+		<img src="{{ feed.communityLogo }}">
+	{% endif %}
+</div>
+
+{% endif %}
+
+<!-- Same Replace as above -->
+<div{% if item.meta.location is defined and item.meta.location is not empty %} class="event-right"{% endif %}>
+	<div class="event-description">
+		{{ item.body|raw }}
+	</div>
+
+	<div class="event-date">
+		{% if item.meta.start is defined and item.meta.start is not empty %}
+		<span class="event-meta-date-start">
+			<span class="label">Begin: </span>{{ item.meta.start|date('d.m.Y H:i') }} UTC
+		</span>
+		{% endif %}
+		{% if item.meta.end is defined and item.meta.end is not empty and item.meta.end|date('Y-m-d H:i') != item.meta.start|date('Y-m-d H:i') %}
+		<br>
+		<span class="event-meta-date-end">
+			<span class="label">End: </span>{{ item.meta.end|date('d.m.Y H:i') }} UTC
+		</span><br>
+		{% endif %}
+	</div>
+</div>
+
+<div class="clear"></div>
+
+<div class="event-meta">
+	{% if item.meta.organizer is defined and item.meta.organizer is not empty %}
+	<span class="event-meta-organizer">
+		<span class="label">by: </span>{{ item.meta.organizer }}
+	</span>
+	{% endif %}
+
+	{% if item.meta.venue is defined and item.meta.venue is not empty %}
+		<br>
+		<span class="event-meta-venue">
+			<span class="label">Venue: </span>{{ item.meta.venue }}
+		</span>
+	{% endif %}
+
+	{% if item.meta.location is defined and item.meta.location is not empty %}
+		<br>
+		<span class="event-meta-location">
+			<span class="label">Location: </span>{{ item.meta.location }}
+		</span>
+	{% endif %}
+
+	{% if item.meta.public is defined and not item.meta.public %}
+		<br>
+		<span class="event-meta-private">
+			<small>This Event is private. You need to be <a href="{{ feed.communityUrl }}/login">part of the community</a> to see details.</small>
+		</span>
+	{% endif %}
+</div>
+</div>
